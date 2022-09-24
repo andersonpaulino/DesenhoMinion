@@ -1,0 +1,63 @@
+package Classes;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+//import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class Imagem extends JPanel {
+	
+	@Override
+	protected void paintComponent(Graphics graph){
+		
+		super.paintComponent(graph);
+		
+		Graphics2D g = (Graphics2D) graph;
+		Graphics2D g2d = g;
+		
+		BufferedImage img;
+		
+		try {
+			
+			img = ImageIO.read(new File("imagens/taz.jpg"));
+			
+			int altura = img.getHeight();
+			int largura = img.getWidth();
+			
+			for (int i = 0;i < altura; i++ ){
+				for ( int j = 0; j < largura; j++){
+					
+					Color px = new Color(img.getRGB(j, i));
+					
+					int red = px.getRed();
+					int green = 0;
+					int blue = 0;
+					Color novopx = new Color(red, green, blue);
+					img.setRGB(j, i, novopx.getRGB());
+					
+					
+					
+					
+				}
+			}
+			
+			
+			
+			g.drawImage(img,null,10,10);
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+
+}
